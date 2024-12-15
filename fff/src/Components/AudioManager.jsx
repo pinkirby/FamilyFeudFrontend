@@ -1,0 +1,46 @@
+
+import { onMount, onCleanup} from 'solid-js';
+
+let audioMap = new Map();
+
+export function AudioManager() {
+    const handleKeyDown = (event) => {
+        const audioFile = audioMap.get(event.key);
+        if (audioFile) {
+            audioFile.currentTime = 0;
+            audioFile.play();
+        }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    onCleanup(() => window.removeEventListener('keydown', handleKeyDown));
+
+    return null;
+}
+
+export function registerAudio(key, audioFilePath) {
+  if (!audioMap.has(key)) {
+    audioMap.set(key, new Audio(audioFilePath));
+  }
+}
+
+export function muteAudio(key) {
+    if (!audioMap.has(key)) {
+        return;
+    }
+    const audio = audioMap.get(key);
+    if (audio) {
+        audio.volume = 0.0;
+    }
+}
+
+export function unmuteAudio(key) {
+    if (!audioMap.has(key)) {
+        return;
+    }
+
+    const audio = audioMap.get(key);
+    if (audio) {
+        audio.volume = 1.0;
+    }
+}
