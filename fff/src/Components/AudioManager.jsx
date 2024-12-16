@@ -2,11 +2,12 @@
 import { onMount, onCleanup} from 'solid-js';
 
 let audioMap = new Map();
+let AvailabilityMap = new Map();
 
 export function AudioManager() {
     const handleKeyDown = (event) => {
         const audioFile = audioMap.get(event.key);
-        if (audioFile) {
+        if (audioFile && AvailabilityMap.get(event.key)) {
             audioFile.currentTime = 0;
             audioFile.play();
         }
@@ -21,7 +22,16 @@ export function AudioManager() {
 export function registerAudio(key, audioFilePath) {
   if (!audioMap.has(key)) {
     audioMap.set(key, new Audio(audioFilePath));
+    AvailabilityMap.set(key, true);
   }
+}
+
+export function disableAudio(key) {
+    AvailabilityMap.set(key, false);
+}
+
+export function enableAudio(key) {
+    AvailabilityMap.set(key, true);
 }
 
 export function muteAudio(key) {

@@ -4,14 +4,14 @@ import { XMarkerCount } from "./XMarkerCountComponent";
 
 let timeoutId = null;
 
-export default function CenterDisplay() {
-    const [isVisible, setIsVisible] = createSignal(false);
+const [isCenterVisible, setIsCenterVisible] = createSignal(false);
+
+export default function CenterXDisplay() {
     const [displayClass, setDisplayClass] = createSignal("hidden")
-    const [interruption, setInterruption] = createSignal(false);
 
     const hideIn5 = () => {
         timeoutId = setTimeout(() => {
-            setIsVisible(false);
+            setIsCenterVisible(false);
             setDisplayClass("hidden")
         }, 5000);
     };
@@ -24,15 +24,15 @@ export default function CenterDisplay() {
         }
 
         if (counter === 0) {
-            setIsVisible(false);
+            setIsCenterVisible(false);
             setDisplayClass("hidden")
             return;
         }
-        setIsVisible(true);
+        setIsCenterVisible(true);
     });
 
     createEffect(() => {
-        const visible = isVisible();
+        const visible = isCenterVisible();
         if (timeoutId !== null) 
             clearTimeout(timeoutId);
         if (visible){
@@ -42,7 +42,7 @@ export default function CenterDisplay() {
     });
 
     return (
-        <div class={`${displayClass()} items-center justify-center h-screen z-1`}>
+        <div class={`${displayClass()} items-center justify-center h-screen z-2`}>
             <XMarkerDisplay
                 tailwindWidth="w-56"
                 tailwindHeight="h-56"
@@ -50,3 +50,5 @@ export default function CenterDisplay() {
         </div>
     );
 }
+
+export { isCenterVisible };

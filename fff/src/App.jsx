@@ -5,7 +5,8 @@ import { registerAudio, AudioManager } from './Components/AudioManager';
 import buzzerWrong from './assets/buzzerWrong.mp3';
 import XMarkerDisplay from './Components/XMarker/XMarkerDisplay'
 import XMarkerCountComponent, { XMarkerCount } from './Components/XMarker/XMarkerCountComponent';
-import CenterDisplay from './Components/XMarker/CenterDisplay';
+import CenterXDisplay from './Components/XMarker/CenterXDisplay';
+import CornerXDisplay from './Components/XMarker/CornerXDisplay';
 
 function App() {
 
@@ -17,8 +18,9 @@ function App() {
       <XMarkerCountComponent />
       <div>
         {/* <XMarkerDisplay tailwindWidth="w-24" tailwindHeight="h-24" tailwindPadding="p-3"/> */}
-        <CenterDisplay />
+        <CenterXDisplay />
       </div>
+      <CornerXDisplay />
     </>
   );
 }
