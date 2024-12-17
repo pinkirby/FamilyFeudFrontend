@@ -1,20 +1,53 @@
-export default function BoardCell() {
+import { createEffect, createSignal, onCleanup, onMount, Show } from "solid-js";
+import RevealedBoardCell from "./RevealedBoardCell";
+import HiddenBoardCell from "./HiddenBoardCell";
+import { keyMapGame1 } from "../../Constants/constants";
+import { disableAudio, enableAudio } from "../AudioManager";
+
+
+export default function BoardCell(props) {
+    const [revealed, SetRevealed] = createSignal(false);
+
+    const eventCodes = keyMapGame1.get(props.numero);
+
+    const handleKeyDown = (event) => {
+        if (eventCodes.includes(event.code)) {
+            SetRevealed(true);
+        }
+
+        if (event.code === "KeyM") {
+            SetRevealed(false);
+        }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    onCleanup(() => window.removeEventListener('keydown', handleKeyDown));
+
+    createEffect(() => {
+        if (revealed()) {
+            eventCodes.forEach(code => {
+                disableAudio(code)
+            });
+            return;
+        }
+        eventCodes.forEach(code => {
+            enableAudio(code)
+        });
+    });
+
     return (
-        <div class={`flex flex-row-reverse w-[47%] h-[22.5%] p-0 bg-green-800 border border-black rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
-            <div class="object-cover w-[30%] h-full rounded-r-lg bg-sky-600 border-l-4 border-blue-400">
-                <div class="flex items-center justify-center h-full w-full">
-                    <p class="text-white text-5xl">
-                        10
-                    </p>
-                </div>
-            </div>
-            <div class="object-cover flex-1 h-full rounded-l-lg bg-blue-900">
-                <div class="flex items-center justify-center h-full w-full">
-                    <p class="text-white text-5xl">
-                        Réponse
-                    </p>
-                </div>
-            </div>
-        </div>
+        <>
+            <Show when={revealed()}>
+                <RevealedBoardCell
+                    pourcentage={props.pourcentage}
+                    reponse={props.reponse}
+                />
+            </Show>
+            <Show when={!revealed()}>
+                <HiddenBoardCell
+                    numero={props.numero}
+                />
+            </Show>
+        </>
     );
 }

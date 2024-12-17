@@ -12,14 +12,14 @@ export default function XMarkerCountComponent() {
 
         if (e.key === 'c') {
             setXMarkerCount(0);
-            enableAudio("x");
+            enableAudio("KeyX");
         }
     }
 
     createEffect(() => {
         const count = XMarkerCount();
         if (count >= MAX_XMARKER) {
-            disableAudio("x");
+            disableAudio("KeyX");
         }
     });
 

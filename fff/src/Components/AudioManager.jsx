@@ -6,8 +6,8 @@ let AvailabilityMap = new Map();
 
 export function AudioManager() {
     const handleKeyDown = (event) => {
-        const audioFile = audioMap.get(event.key);
-        if (audioFile && AvailabilityMap.get(event.key)) {
+        const audioFile = audioMap.get(event.code);
+        if (audioFile && AvailabilityMap.get(event.code)) {
             audioFile.currentTime = 0;
             audioFile.play();
         }

@@ -9,6 +9,7 @@ import CenterXDisplay from './Components/XMarker/CenterXDisplay';
 import CornerXDisplay from './Components/XMarker/CornerXDisplay';
 import AnswersBoard from './Components/Game1/AnswersBoard';
 import { onMount } from 'solid-js';
+import AudioRegisterer from './Components/AudioRegisterer';
 
 function App() {
 
@@ -16,11 +17,10 @@ function App() {
     document.body.classList.add("bg-zinc-800");
   });
 
-  registerAudio("x", buzzerWrong)
-
   return (
     <div>
       <AudioManager />
+      <AudioRegisterer />
       <XMarkerCountComponent />
       <AnswersBoard />
       <CenterXDisplay />
