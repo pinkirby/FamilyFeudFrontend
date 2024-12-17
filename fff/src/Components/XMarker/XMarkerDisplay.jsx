@@ -46,7 +46,7 @@ export default function XMarkerDisplay(props) {
 
     return (
         <div>
-            <div class={`max-w-fit ${props.tailwindPadding} bg-blue-800 border border-black rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
+            <div class={`max-w-fit ${props.tailwindPadding} bg-blue-800 border-2 border-black rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
                 <div class="flex justify-around">
                     {marks().map((div, index) => (
                         <div key={div.id} class={`flex items-center justify-center ${props.tailwindWidth} ${props.tailwindHeight}`}>

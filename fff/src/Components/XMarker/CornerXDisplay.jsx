@@ -23,7 +23,7 @@ export default function CornerXDisplay() {
     });
 
     return (
-        <div class={`${displayClass()} items-end justify-end h-screen z-3`}>
+        <div class={`${displayClass()} items-end justify-end h-screen z-3 absolute w-dvw h-dvh`}>
             <XMarkerDisplay
                 tailwindWidth="w-24"
                 tailwindHeight="h-24"
