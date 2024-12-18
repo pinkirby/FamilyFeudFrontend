@@ -10,6 +10,9 @@ import CornerXDisplay from './Components/XMarker/CornerXDisplay';
 import AnswersBoard from './Components/Game1/AnswersBoard';
 import { onMount } from 'solid-js';
 import AudioRegisterer from './Components/AudioRegisterer';
+import CenterHolder from './Components/Game1/CenterHolder';
+import Logo from './Components/Game1/Logo';
+import TeamCounters from './Components/Game1/TeamCounters';
 
 function App() {
 
@@ -22,7 +25,9 @@ function App() {
       <AudioManager />
       <AudioRegisterer />
       <XMarkerCountComponent />
-      <AnswersBoard />
+      <TeamCounters />
+      <Logo />
+      <CenterHolder />
       <CenterXDisplay />
       <CornerXDisplay />
     </div>

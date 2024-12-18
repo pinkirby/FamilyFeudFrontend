@@ -1,15 +1,15 @@
 import { createSignal, onMount } from "solid-js";
 
 export default function RevealedBoardCell(props) {
-    const [textSize, SetTextSize] = createSignal("text-5xl");
+    const [textSize, SetTextSize] = createSignal("text-4xl");
 
     onMount(() => {
         if (props.reponse.length > 12) {
-            SetTextSize("text-3xl")
+            SetTextSize("text-2xl")
         }
         if (props.reponse.length > 30) {
             
-            SetTextSize("text-xl")
+            SetTextSize("text-lg")
         }
 
     })

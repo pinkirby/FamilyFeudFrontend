@@ -20,9 +20,6 @@ export default function BoardCell(props) {
         }
     }
 
-    window.addEventListener('keydown', handleKeyDown);
-    onCleanup(() => window.removeEventListener('keydown', handleKeyDown));
-
     createEffect(() => {
         if (revealed()) {
             eventCodes.forEach(code => {
@@ -35,6 +32,9 @@ export default function BoardCell(props) {
         });
     });
 
+    window.addEventListener('keydown', handleKeyDown);
+    onCleanup(() => window.removeEventListener('keydown', handleKeyDown));
+
     return (
         <>
             <Show when={revealed()}>
@@ -46,6 +46,7 @@ export default function BoardCell(props) {
             <Show when={!revealed()}>
                 <HiddenBoardCell
                     numero={props.numero}
+                    setRevealed={SetRevealed}
                 />
             </Show>
         </>

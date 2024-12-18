@@ -4,8 +4,8 @@ import BoardCell from "./BoardCell";
 import BrickCell from "./BrickCell";
 import RevealedBoardCell from "./RevealedBoardCell";
 
+const [reponses, SetReponses] = createSignal([]);
 export default function AnswersBoard(props) {
-  const [reponses, SetReponses] = createSignal([]);
 
   onMount(() => {
     SetReponses([
@@ -20,26 +20,24 @@ export default function AnswersBoard(props) {
   });
 
   return (
-    <div class="z-1 absolute flex items-center justify-center w-dvw h-dvh">
-      <div class="w-7/12 h-5/6 bg-gray-500 flex flex-col flex-wrap justify-evenly content-evenly rounded-md">
-        {reponses().length > 0 && (
-          <For each={Array.from({ length: NUMBER_CELLS_GAME1 }, (_, i) => i)}>
-            {(index) => {
-              if (index >= reponses().length) {
-                return <BrickCell />;
-              }
+    <div class="w-6/12 h-4/6 bg-gray-500 flex flex-col flex-wrap justify-evenly content-evenly rounded-md">
+      {reponses().length > 0 && (
+        <For each={Array.from({ length: NUMBER_CELLS_GAME1 }, (_, i) => i)}>
+          {(index) => {
+            if (index >= reponses().length) {
+              return <BrickCell />;
+            }
 
-              return (
-                <BoardCell
-                  pourcentage={reponses()[index].pourcentage}
-                  reponse={reponses()[index].reponse}
-                  numero={index + 1}
-                />
-              );
-            }}
-          </For>
-        )}
-      </div>
+            return (
+              <BoardCell
+                pourcentage={reponses()[index].pourcentage}
+                reponse={reponses()[index].reponse}
+                numero={index + 1}
+              />
+            );
+          }}
+        </For>
+      )}
     </div>
   );
 }
