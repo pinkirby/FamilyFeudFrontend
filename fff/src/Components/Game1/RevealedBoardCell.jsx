@@ -1,4 +1,5 @@
 import { createSignal, onMount } from "solid-js";
+import { mainCounter, setMainCounter } from "./MainCounter";
 
 export default function RevealedBoardCell(props) {
     const [textSize, SetTextSize] = createSignal("text-4xl");
@@ -12,7 +13,7 @@ export default function RevealedBoardCell(props) {
             SetTextSize("text-lg")
         }
 
-
+        setMainCounter(mainCounter() + parseInt(props.pourcentage))
     })
 
     return (

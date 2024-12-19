@@ -13,6 +13,7 @@ import AudioRegisterer from './Components/AudioRegisterer';
 import CenterHolder from './Components/Game1/CenterHolder';
 import Logo from './Components/Game1/Logo';
 import TeamCounters from './Components/Game1/TeamCounters';
+import MiniMenu from './Components/MiniMenu/MiniMenu';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <TeamCounters />
       <CornerXDisplay />
       <CenterXDisplay />
+      <MiniMenu />
     </div>
   );
 }
