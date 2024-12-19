@@ -8,13 +8,7 @@ const [reponses, SetReponses] = createSignal([]);
 export default function AnswersBoard(props) {
 
   onMount(() => {
-    console.log("on mount!");
     SetReponses([]);
-  });
-
-  createEffect(() => {
-    console.log("bonjour");
-    console.log(reponses());
   });
 
   return (
