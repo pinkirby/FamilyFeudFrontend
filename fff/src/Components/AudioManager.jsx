@@ -1,5 +1,6 @@
 
 import { onMount, onCleanup} from 'solid-js';
+import { inFix } from './MiniMenu/MiniMenu';
 
 let audioMap = new Map();
 let AvailabilityMap = new Map();
@@ -7,7 +8,7 @@ let AvailabilityMap = new Map();
 export function AudioManager() {
     const handleKeyDown = (event) => {
         const audioFile = audioMap.get(event.code);
-        if (audioFile && AvailabilityMap.get(event.code)) {
+        if (audioFile && AvailabilityMap.get(event.code) && !inFix()) {
             audioFile.currentTime = 0;
             audioFile.play();
         }

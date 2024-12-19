@@ -10,6 +10,9 @@ modeLabels.set("reveal", " -- REVEAL -- ");
 
 const [mode, setMode] = createSignal("normal");
 const [gameIndex, setGameIndex] = createSignal(0);
+const [leftNumber, setLeftNumber] = createSignal(0);
+const [rightNumber, setRightNumber] = createSignal(0);
+const [inFix, setInFix] = createSignal(false);
 
 export default function MiniMenu() {
     const [jsonData, setJsonData] = createSignal({});
@@ -68,6 +71,26 @@ export default function MiniMenu() {
         setMainCounter(0);
     };
 
+    const handleLeftInput = (e) => {
+        let val = e.target.value;
+        if (!val || val == "" || val == 0) return;
+        const value = e.target.value.replace(/\D/g, "");
+        e.target.value;
+        setLeftNumber(value);
+    };
+
+    const handleRightInput = (e) => {
+        let val = e.target.value;
+        if (!val || val == "" || val == 0) return;
+        const value = e.target.value.replace(/\D/g, "");
+        e.target.value;
+        setRightNumber(value);
+    };
+
+    const handleFixClick = () => {
+        setInFix(!inFix());
+    }
+
     createEffect(() => {
         let data = jsonData()[currentGame()] 
         if (!data) return;
@@ -87,6 +110,9 @@ export default function MiniMenu() {
             <button onClick={() => document.querySelector("input[type='file']").click()} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 Import
             </button>
+            <button onclick={handleFixClick} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Fix
+            </button>
             <button onClick={handleLeftArrowClick} type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 &larr;
             </button>
@@ -96,10 +122,14 @@ export default function MiniMenu() {
             <p class="text-white inline-block">
                 {modeLabels.get(mode())}
             </p>
+            {inFix() && (
+                <div>
+                    <input type="text" onInput={handleLeftInput}  />
+                    <input type="text" onInput={handleRightInput}  />
+                </div>
+            )}
         </div>
     );
 }
 
-export { mode };
-
-export { gameIndex };
+export { mode, gameIndex, leftNumber, rightNumber, inFix };

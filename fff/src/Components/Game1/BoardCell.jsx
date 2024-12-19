@@ -4,6 +4,7 @@ import HiddenBoardCell from "./HiddenBoardCell";
 import { keyMapGame1 } from "../../Constants/constants";
 import { disableAudio, enableAudio } from "../AudioManager";
 import { setMainCounter } from "./MainCounter";
+import { inFix } from "../MiniMenu/MiniMenu";
 
 
 export default function BoardCell(props) {
@@ -12,7 +13,7 @@ export default function BoardCell(props) {
     const eventCodes = keyMapGame1.get(props.numero);
 
     const handleKeyDown = (event) => {
-        if (eventCodes.includes(event.code)) {
+        if (eventCodes.includes(event.code) && !inFix()) {
             SetRevealed(true);
         }
 

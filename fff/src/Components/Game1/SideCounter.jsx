@@ -1,21 +1,11 @@
 import { createEffect, createSignal, onCleanup } from "solid-js";
 import { mainCounter } from "./MainCounter";
-import { gameIndex } from "../MiniMenu/MiniMenu";
+import { gameIndex, inFix, leftNumber, rightNumber } from "../MiniMenu/MiniMenu";
 
 export default function SideCounter(props) {
     const [counter, setCounter] = createSignal(0);
     const [lastCounter, setLastCounter] = createSignal(0);
     const [beenAdded, setBeenAdded] = createSignal(false);
-
-    const menuOptions = [
-        { label: "Undo", action: () => {
-            setCounter(lastCounter());
-        }},
-        { label: "Reset", action: () => {
-            setLastCounter(counter());
-            setCounter(0);
-        }},
-    ];
 
     const handleClick = () => {
         setBeenAdded(false);
@@ -45,6 +35,24 @@ export default function SideCounter(props) {
     createEffect(() => {
         gameIndex();
         setBeenAdded(false);
+    });
+
+    createEffect(() => {
+        if (!inFix()) return;
+
+        if (props.keyCode === "ArrowLeft") {
+            if (leftNumber() !== 0) {
+                setLastCounter(counter());
+                setCounter(leftNumber());
+            }
+        }
+
+        if (props.keyCode === "ArrowRight") {
+            if (rightNumber() !== 0) {
+                setLastCounter(counter());
+                setCounter(rightNumber());
+            }
+        }
     });
 
     window.addEventListener('keydown', handleKeyDown);
