@@ -132,4 +132,4 @@ export default function MiniMenu() {
     );
 }
 
-export { mode, gameIndex, leftNumber, rightNumber, inFix };
+export { mode, gameIndex, leftNumber, rightNumber, inFix, setMode };

@@ -4,7 +4,7 @@ import HiddenBoardCell from "./HiddenBoardCell";
 import { keyMapGame1 } from "../../Constants/constants";
 import { disableAudio, enableAudio } from "../AudioManager";
 import { setMainCounter } from "./MainCounter";
-import { inFix } from "../MiniMenu/MiniMenu";
+import { inFix, setMode } from "../MiniMenu/MiniMenu";
 
 
 export default function BoardCell(props) {
@@ -20,6 +20,7 @@ export default function BoardCell(props) {
         if (event.code === "KeyM") {
             SetRevealed(false);
             setMainCounter(0);
+            setMode("normal");
         }
     }
 
