@@ -1,5 +1,6 @@
 import { createSignal, onMount } from "solid-js";
 import { mainCounter, setMainCounter } from "./MainCounter";
+import { mode } from "../MiniMenu/MiniMenu";
 
 export default function RevealedBoardCell(props) {
     const [textSize, SetTextSize] = createSignal("text-4xl");
@@ -13,7 +14,9 @@ export default function RevealedBoardCell(props) {
             SetTextSize("text-lg")
         }
 
-        setMainCounter(mainCounter() + parseInt(props.pourcentage))
+        if (mode() === "normal") {
+            setMainCounter(mainCounter() + parseInt(props.pourcentage))
+        }
     })
 
     return (

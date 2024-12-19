@@ -11,8 +11,7 @@ export default function XMarkerCountComponent() {
         }
 
         if (e.key === 'c') {
-            setXMarkerCount(0);
-            enableAudio("KeyX");
+            clearXs();
         }
     }
 
@@ -27,6 +26,11 @@ export default function XMarkerCountComponent() {
     onCleanup(() => window.removeEventListener('keydown', handleKeyDown));
 
     return null;
+}
+
+export function clearXs() {
+    setXMarkerCount(0);
+    enableAudio("KeyX");
 }
 
 export { XMarkerCount }; 
