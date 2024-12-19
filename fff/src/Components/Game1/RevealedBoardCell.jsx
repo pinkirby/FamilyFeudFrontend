@@ -12,6 +12,7 @@ export default function RevealedBoardCell(props) {
             SetTextSize("text-lg")
         }
 
+
     })
 
     return (

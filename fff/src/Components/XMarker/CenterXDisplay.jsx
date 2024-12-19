@@ -42,7 +42,7 @@ export default function CenterXDisplay() {
     });
 
     return (
-        <div class={`${displayClass()} items-center justify-center h-screen z-20 relative w-dvw h-dvh`}>
+        <div class={`${displayClass()} z-40 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
             <XMarkerDisplay
                 tailwindWidth="w-56"
                 tailwindHeight="h-56"

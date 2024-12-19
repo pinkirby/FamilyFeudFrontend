@@ -25,11 +25,11 @@ function App() {
       <AudioManager />
       <AudioRegisterer />
       <XMarkerCountComponent />
-      <TeamCounters />
       <Logo />
       <CenterHolder />
-      <CenterXDisplay />
+      <TeamCounters />
       <CornerXDisplay />
+      <CenterXDisplay />
     </div>
   );
 }

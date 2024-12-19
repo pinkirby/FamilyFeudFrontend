@@ -20,7 +20,7 @@ export default function AnswersBoard(props) {
   });
 
   return (
-    <div class="w-6/12 h-4/6 bg-gray-500 flex flex-col flex-wrap justify-evenly content-evenly rounded-md">
+    <div class="w-[50dvw] h-[60dvh] bg-gray-500 flex flex-col flex-wrap justify-evenly content-evenly rounded-md">
       {reponses().length > 0 && (
         <For each={Array.from({ length: NUMBER_CELLS_GAME1 }, (_, i) => i)}>
           {(index) => {

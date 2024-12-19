@@ -6,11 +6,6 @@ export default function HiddenBoardCell(props) {
         props.setRevealed(true);
         let audio = new Audio(ding);
         audio.play();
-
-        audio.ended = () => {
-            audio.remove();
-            audio = null;
-        };
     };
 
     return (
