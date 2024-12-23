@@ -10,7 +10,7 @@ export function AudioManager() {
         const audioFile = audioMap.get(event.code);
         if (audioFile && AvailabilityMap.get(event.code) && !inFix()) {
             audioFile.currentTime = 0;
-            audioFile.play();
+            audioFile.play().catch(() => {});
         }
     }
 
@@ -53,5 +53,12 @@ export function unmuteAudio(key) {
     const audio = audioMap.get(key);
     if (audio) {
         audio.volume = 1.0;
+    }
+}
+
+export function stopAudio(key) {
+    const audio = audioMap.get(key);
+    if (audio) {
+        audio.pause();
     }
 }

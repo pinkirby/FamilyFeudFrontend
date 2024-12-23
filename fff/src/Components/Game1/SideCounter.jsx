@@ -11,6 +11,10 @@ export default function SideCounter(props) {
         setBeenAdded(false);
     }
 
+    const passCurrentCounter = (count) => {
+        props.sendCurrentCounter(count);
+    };
+
     const handleKeyDown = (event) => {
         if (event.shiftKey && event.ctrlKey && event.code === props.keyCode) {
             setLastCounter(counter());
@@ -40,19 +44,19 @@ export default function SideCounter(props) {
     createEffect(() => {
         if (!inFix()) return;
 
-        if (props.keyCode === "ArrowLeft") {
-            if (leftNumber() !== 0) {
-                setLastCounter(counter());
-                setCounter(leftNumber());
-            }
+        if (props.keyCode === "ArrowLeft" && leftNumber() !== 0) {
+            setLastCounter(counter());
+            setCounter(leftNumber());
         }
 
-        if (props.keyCode === "ArrowRight") {
-            if (rightNumber() !== 0) {
-                setLastCounter(counter());
-                setCounter(rightNumber());
-            }
+        if (props.keyCode === "ArrowRight" && rightNumber() !== 0) {
+            setLastCounter(counter());
+            setCounter(rightNumber());
         }
+    });
+
+    createEffect(() => {
+        passCurrentCounter(counter());
     });
 
     window.addEventListener('keydown', handleKeyDown);
