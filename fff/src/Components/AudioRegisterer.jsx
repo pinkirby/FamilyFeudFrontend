@@ -1,12 +1,14 @@
 import { registerAudio } from "./AudioManager";
 import buzzerWrong from '../assets/buzzerWrong.mp3';
+import victory from '../assets/ffvictory.mp3';
 import theme from '../assets/theme.mp3';
 import ding from '../assets/ding.mp3';
 import { keyMapGame1 } from "../Constants/constants";
 
 export default function AudioRegisterer() {
     registerAudio("KeyX", buzzerWrong);
-    registerAudio("KeyV", theme);
+    registerAudio("KeyV", victory);
+    registerAudio("KeyP", theme);
 
     const GetAllCodeFromBoard = (map) => {
         let allcodes = [];

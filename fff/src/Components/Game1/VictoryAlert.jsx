@@ -10,10 +10,6 @@ export default function VictoryAlert() {
         if (event.code === "KeyV") {
             setIsVisible(!isVisible());
         }
-
-        if (event.code === "KeyP") {
-            stopAudio("KeyV");
-        }
     };
 
     createEffect(() => {
