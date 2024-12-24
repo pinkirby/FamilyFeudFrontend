@@ -9,6 +9,6 @@ keyMapGame1.set(4, ["Digit4", "Numpad4"]);
 keyMapGame1.set(5, ["Digit5", "Numpad5"]);
 keyMapGame1.set(6, ["Digit6", "Numpad6"]);
 keyMapGame1.set(7, ["Digit7", "Numpad7"]);
-keyMapGame1.set(8, ["Digit8", "Numpad*"]);
+keyMapGame1.set(8, ["Digit8", "Numpad8"]);
 
 export { keyMapGame1 };
